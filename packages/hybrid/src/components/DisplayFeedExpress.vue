@@ -72,6 +72,7 @@ export default {
   },
   methods: {
     loadFeed: function() {
+      this.error = null
       this.loading = true
       if (isValidUrl(this.feed) === true) {
         axios
