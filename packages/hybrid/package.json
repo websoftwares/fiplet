@@ -11,7 +11,7 @@
     "hybrid:dev": "yarn run dev",
     "hybrid:build": "yarn run build",
     "hybrid:start": "yarn run start",
-    "hybrid:browser": "cordova run browser"
+    "hybrid:browser": "yarn run build && cordova run browser"
   },
   "dependencies": {
     "axios": "^0.18.0",

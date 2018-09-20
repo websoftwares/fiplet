@@ -11,6 +11,7 @@ This project contains the following packages:
 - Node v8.12 (LTS)
 - Yarn 1.4.2+
 - Docker
+- Docker compose
 - Cordova
 - Linux (recommended)
 
@@ -20,13 +21,23 @@ This project contains the following packages:
 yarn install
 ```
 
-## Deployment:
+## Routes
+The frontend application has the following routes
 
+- /rss2feed - contains issue #2
+- /display-feed contains issue #3, #4
+- /display-feed-express #5
 
-## Testing
-For all packages unit tests are defined in `packages/*/test` and integration test in `packages/*/test-integration`.
+## Available commands
+As this is a mono repository we can execute the following commands from the root of the project
 
-All test should have the following file suffix: `*.test.js`
+- rss:start - Starts the express server on port 3000
+- hybrid:dev - Starts the hybrid Vue/Cordova project for development
+- hybrid:build - Builds the hybrid Vue/Cordova project for development
+- hybrid:browser - Starts the hybrid Vue/Cordova project for browser platform
+
+## Docker
+In `packages/rss` a docker-compose file is available and can be executed with `docker-compose up -d`
 
 ## Adding dependencies
 For each package we can have local dependencies, to add one issue the following command
