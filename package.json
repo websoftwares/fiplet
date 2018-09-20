@@ -12,7 +12,8 @@
         "packages/*"
       ],
       "nohoist": [
-        "**/hybrid/**"
+        "**/hybrid/**",
+        "**/rss/**"
       ]
     },
     "devDependencies": {
@@ -29,6 +30,7 @@
     },
     "scripts": {
       "lint": "eslint packages/**/*.js packages/**/*.vue",
+      "rss:start": "lerna run --stream start",
       "hybrid:dev": "lerna run --stream hybrid:dev",
       "hybrid:build": "lerna run --stream hybrid:build",
       "hybrid:browser": "lerna run --stream hybrid:browser"
