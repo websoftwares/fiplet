@@ -13,6 +13,19 @@ const FEEDS_LIST = [
   'http://feeds.bbci.co.uk/news/rss.xml'
 ]
 
+const getFeeds = () => {
+   let promises = FEEDS_LIST.map(feed => axios.get(`${RSS_API_URL}${feed}`, { crossdomain: true }))
+    axios.all(promises).then(function(results) {
+    results.forEach(function(response) {
+      for (let {link, title, description} of response.data.items) {
+        console.log(link)
+        console.log(title)
+        console.log(description)
+      }
+    })
+   })
+}
+
 export default {
   name: 'FLipletRSS',
   data() {
@@ -20,19 +33,7 @@ export default {
       feeds: [],
     }
   },
-  created() {
-    let promises = FEEDS_LIST.map(feed => axios.get(`${RSS_API_URL}${feed}`, { crossdomain: true }))
-    axios.all(promises).then(function(results) {
-    results.forEach(function(response) {
-      for (let {link, title, description} of response.data.items) {
-        console.log(link);
-        console.log(title)
-        console.log(description)
-      }
-    })
-});
-
-  }
+  created: getFeeds
 }
 </script>
 
