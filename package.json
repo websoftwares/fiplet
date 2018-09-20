@@ -1,0 +1,37 @@
+{
+    "name": "fliplet",
+    "version": "1.0.0",
+    "description": "RSS FEED Project",
+    "main": "index.js",
+    "repository": "ssh://git@github.com/fliplet-rss/fliplet-rss.git",
+    "author": "Boris <boris@websoftwar.es>",
+    "license": "MIT",
+    "private": true,
+    "workspaces": {
+      "packages": [
+        "packages/*"
+      ],
+      "nohoist": [
+        "**/hybrid/**"
+      ]
+    },
+    "devDependencies": {
+      "eslint": "^5.1.0",
+      "eslint-config-prettier": "^2.9.0",
+      "eslint-plugin-node": "^7.0.1",
+      "eslint-plugin-prettier": "^2.6.2",
+      "eslint-plugin-promise": "^3.8.0",
+      "eslint-plugin-vue": "^4.5.0",
+      "lerna": "^2.11.0",
+      "nyc": "^11.2.1",
+      "tap-spec": "^4.1.1",
+      "tape": "^4.8.0"
+    },
+    "scripts": {
+      "lint": "eslint packages/**/*.js packages/**/*.vue",
+      "hybrid:dev": "lerna run --stream hybrid:dev",
+      "hybrid:build": "lerna run --stream hybrid:build",
+      "hybrid:browser": "lerna run --stream hybrid:browser"
+    }
+  }
+  

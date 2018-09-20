@@ -1,0 +1,8 @@
+.idea
+yarn-error.log
+packages/*/yarn-error.log
+.vscode
+node_modules
+.nyc_output
+coverage
+lerna-debug.log
