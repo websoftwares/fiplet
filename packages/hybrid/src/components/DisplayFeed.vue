@@ -6,11 +6,15 @@
     </div>
   </div>
 
+       <div v-if=error class="alert alert-danger" role="alert">
+          <strong>Error</strong> {{error}}
+        </div>
+
   <div class="row">
     <div class="col-xl-12">
       <form @submit.prevent="loadFeed" class="form">
-      <div class="form-group">
-          <input :disabled="loading" v-model="feed" class="form-control" placeholder="Enter RSS URL" />
+      <div class="form-group" :class="{'has-danger': error }" >
+          <input :disabled="loading" v-model="feed" :class="{'form-control ': !error, 'form-control is-invalid': error }" placeholder="Enter RSS URL" />
       </div>
       <div class="form-group">
           <input :disabled="loading" type="submit" class="btn btn-primary btn-block"  value="Search" />
@@ -47,6 +51,14 @@ import axios from 'axios'
 
 const RSS_API_URL = 'https://api.rss2json.com/v1/api.json?rss_url='
 
+const isValidUrl = string => {
+  try {
+    new URL(string)
+    return true
+  } catch (_) {
+    return false
+  }
+}
 
 export default {
   name: 'FLipletRSS',
@@ -54,20 +66,30 @@ export default {
     return {
       feeds: [],
       loading: false,
-      feed: null
+      feed: null,
+      error: null,
     }
   },
   methods: {
     loadFeed: function() {
       this.loading = true
-      axios.get(`${RSS_API_URL}${this.feed}`).then(response => {
-          this.feeds =response.data.items
-          this.loading = false
-          return
-        })
-        .catch(e => console.log(e))
-    }
-  }
+      if (isValidUrl(this.feed) === true) {
+        axios
+          .get(`${RSS_API_URL}${this.feed}`)
+          .then(response => {
+            this.feeds = response.data.items
+            this.loading = false
+            return
+          })
+          .catch(e => {
+            this.error = e.message
+            this.loading = false
+          })
+      } else {
+        this.error = `Entered feed: ${this.feed} is invalid`
+        this.loading = false
+      }
+    },
+  },
 }
-
 </script>
