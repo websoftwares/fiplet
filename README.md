@@ -1,10 +1,6 @@
 # fliplet-rss
 
-
-## Packages
-This project contains the following packages:
-
-- [hybrid](packages/hybrid/README.md)
+Example rss application
 
 ## Prerequisites
 - Vue
